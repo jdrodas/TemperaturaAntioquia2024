@@ -16,6 +16,35 @@ docker pull postgres:latest
 -- Crear el contenedor
 docker run --name postgres-tadb -e POSTGRES_PASSWORD=unaClav3 -d -p 5432:5432 postgres:latest
 
+-- ***********************************
+-- Abastecimiento de datos
+-- ***********************************
+
+/*
+Temperatura Antioquia 2024
+Análisis de la temperatura para el departamento de Antioquia en el 2024, 
+usando diferentes tecnologías de almacenamiento de datos.
+
+Los datos originales fueron tomados de la Plataforma Nacional de Datos 
+Abiertos de Colombia, del dataset denominado
+
+Datos Hidrometeorológicos Crudos - Red de Estaciones IDEAM : Temperatura
+
+https://www.datos.gov.co/Ambiente-y-Desarrollo-Sostenible/Datos-Hidrometeorol-gicos-Crudos-Red-de-Estaciones/sbwg-7ju4/about_data
+
+Filtros aplicados:
+
+Departamento: Antioquia
+Rango fechas: Enero 1 de 2024, 12:00 am a Enero 1 2025, 12:00 am.
+Total registros iniciales antes de control de calidad: 484.965 filas.
+
+Importante:
+Los datos aqui expuestos son utilizados con fines académicos. 
+Por favor acceda al recurso relacionado para conocer más información al respecto.
+*/
+
+
+
 -- ****************************************
 -- Creación de base de datos y usuarios
 -- ****************************************
@@ -312,6 +341,7 @@ from datos_provisionales;
 -- ===========================================
 -- Creación de Vistas
 -- ===========================================
+
 -- vista: v_ubicacion_observacion
 create or replace view v_ubicacion_observacion as
 (
@@ -351,17 +381,117 @@ create or replace view v_ubicacion_estacion as
 );
 
 
+-- ===========================================
+-- Creación de Vistas Materializadas
+-- ===========================================
+
+-- Materialized View: mv_estadisticas_outliers
+create materialized view mv_estadisticas_outliers as (
+WITH estadisticas_por_mes_estacion AS (
+    -- Calcula estadísticas por mes y estación
+    SELECT
+        estacion_id,
+        EXTRACT(MONTH FROM fecha) AS mes,
+        AVG(valor) AS promedio,
+        STDDEV(valor) AS desviacion_estandar,
+        MIN(valor) AS minimo,
+        MAX(valor) AS maximo,
+        PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY valor) AS q1,
+        PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY valor) AS q3
+    FROM observaciones
+    WHERE EXTRACT(YEAR FROM fecha) = 2024
+    GROUP BY estacion_id, EXTRACT(MONTH FROM fecha)
+),
+outliers AS (
+    -- Identifica valores atípicos usando el método del rango intercuartílico (IQR)
+    SELECT
+        o.id observacion_id,
+        o.estacion_id,
+        e.nombre AS estacion_nombre,
+        o.sensor_id,
+        s.nombre AS sensor_nombre,
+        o.fecha,
+        o.valor,
+        o.unidad_medida,
+        est.promedio,
+        est.desviacion_estandar,
+        est.q1,
+        est.q3,
+        est.q3 - est.q1 AS iqr,
+        est.q1 - 1.5 * (est.q3 - est.q1) AS limite_inferior,
+        est.q3 + 1.5 * (est.q3 - est.q1) AS limite_superior,
+        ABS(o.valor - est.promedio) / NULLIF(est.desviacion_estandar, 0) AS z_score,
+        CASE
+            WHEN o.valor < est.q1 - 1.5 * (est.q3 - est.q1) THEN 'Outlier bajo'
+            WHEN o.valor > est.q3 + 1.5 * (est.q3 - est.q1) THEN 'Outlier alto'
+            ELSE 'Normal'
+        END AS tipo_outlier
+    FROM observaciones o
+    JOIN estaciones e ON o.estacion_id = e.id
+    JOIN sensores s ON o.sensor_id = s.id
+    JOIN estadisticas_por_mes_estacion est ON
+        o.estacion_id = est.estacion_id AND
+        EXTRACT(MONTH FROM o.fecha) = est.mes
+)
+SELECT
+    observacion_id,
+    estacion_id,
+    estacion_nombre,
+    sensor_id,
+    sensor_nombre,
+    fecha,
+    valor,
+    unidad_medida,
+    tipo_outlier,
+    round(limite_inferior::numeric,3) limite_inferior,
+    round(promedio::numeric,3) promedio,
+    round(limite_superior::numeric,3) limite_superior,
+    q1 percentil_25,
+    q3 percentil_75,
+    desviacion_estandar,
+    z_score
+FROM outliers
+WHERE tipo_outlier IN ('Outlier bajo', 'Outlier alto') OR z_score > 3
+    );
+
 
 -- ===========================================
 -- ZONA DE PELIGRO - BORRADO DE OBJETOS
 -- ===========================================
 
--- Borrado de tablas
+-- Borrado de vistas
+drop view v_ubicacion_estacion;
+drop view v_ubicacion_observacion;
 
+-- Borrado de tablas
 drop table observaciones;
 drop table sensores;
 drop table estaciones;
 drop table municipios;
-drop table zonas_hidrograficas;
+drop table zonas;
 drop table departamentos;
 drop table datos_provisionales;
+
+-- Revocación de privilegios
+
+revoke connect on database analisistemperatura_db from analisistemperatura_usr;
+revoke temporary on database analisistemperatura_db from analisistemperatura_usr;
+revoke usage on schema public from analisistemperatura_usr;
+revoke create on schema public from analisistemperatura_usr;
+revoke select, insert, update, delete, trigger on all tables in schema public from analisistemperatura_usr;
+revoke usage, select on all sequences in schema public from analisistemperatura_usr;
+revoke execute on all functions in schema public from analisistemperatura_usr;
+revoke execute on all procedures in schema public from analisistemperatura_usr;
+
+alter default privileges in schema public revoke select, insert, update, delete, trigger on tables from analisistemperatura_usr;
+alter default privileges in schema public revoke select, usage on sequences from analisistemperatura_usr;
+alter default privileges in schema public revoke execute on routines from analisistemperatura_usr;
+
+revoke usage on schema information_schema from analisistemperatura_usr;
+
+
+-- Borrado de usuarios
+drop user analisistemperatura_usr;
+
+-- Borrado de base de datos
+drop database analisistemperatura_db;
