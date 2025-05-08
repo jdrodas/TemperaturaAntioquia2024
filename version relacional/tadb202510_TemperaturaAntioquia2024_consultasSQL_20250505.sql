@@ -27,7 +27,7 @@ select distinct
     municipio,
     zonahidrografica,
     unidadmedida,
-    to_timestamp(fechaobservacion::text, 'MM/DD/YYYY HH:MI:SS AM'),
+    fechaobservacion,
     count(valorobservado) total
 from datos_provisionales
 group by
@@ -38,7 +38,7 @@ group by
     municipio,
     zonahidrografica,
     unidadmedida,
-    to_timestamp(fechaobservacion::text, 'MM/DD/YYYY HH:MI:SS AM')
+    fechaobservacion
 having count(valorobservado) > 1
 order by total desc;
 
@@ -184,6 +184,7 @@ order by total desc;
 -- Ahora si, las consultas interesantes
 -- ********************************************************
 
+-- ------------------------------------------------------------------------------------------
 -- Análisis de patrones cíclicos de temperatura por día de la semana y hora
 -- ¿Existen patrones cíclicos en las temperaturas según el día de la semana 
 -- y la hora del día, y cómo varían entre las diferentes zonas hidrográficas?
@@ -233,4 +234,48 @@ SELECT
 FROM observaciones_horarias o
 JOIN estadisticas_zona e ON o.zona_id = e.zona_id
 ORDER BY o.zona_nombre, o.dia_semana, o.hora;
+
+-- ------------------------------------------------------------------------------------------
+-- ¿Cómo ha evolucionado la temperatura promedio mensual durante 2024 en la zona hidrográfica 
+-- de Nechí en Antioquia, y cuál es la tendencia respecto al mes anterior?
+
+WITH temperatura_mensual_zona AS (
+    SELECT
+        z.id AS zona_id,
+        z.nombre AS zona_nombre,
+        EXTRACT(YEAR FROM o.fecha) AS año,
+        EXTRACT(MONTH FROM o.fecha) AS mes,
+        TO_CHAR(DATE_TRUNC('month', o.fecha), 'Month') AS nombre_mes,
+        AVG(o.valor) AS temperatura_promedio,
+        COUNT(*) AS num_observaciones,
+        COUNT(DISTINCT o.estacion_id) AS num_estaciones
+    FROM observaciones o
+    JOIN estaciones e ON o.estacion_id = e.id
+    JOIN municipios m ON e.municipio_id = m.id
+    JOIN zonas z ON m.zona_id = z.id
+    JOIN departamentos d ON m.departamento_id = d.id
+    WHERE
+        upper(d.nombre) = 'ANTIOQUIA' AND
+        EXTRACT(YEAR FROM o.fecha) = 2024
+    GROUP BY z.id, z.nombre, EXTRACT(YEAR FROM o.fecha), EXTRACT(MONTH FROM o.fecha),
+             TO_CHAR(DATE_TRUNC('month', o.fecha), 'Month')
+)
+SELECT
+    zona_nombre,
+    año,
+    mes,
+    nombre_mes,
+    round(temperatura_promedio::numeric,3) temperatura_promedio,
+    num_observaciones,
+    num_estaciones,
+    LAG(temperatura_promedio) OVER (PARTITION BY zona_id ORDER BY año, mes) AS temperatura_mes_anterior,
+    temperatura_promedio - LAG(temperatura_promedio) OVER (PARTITION BY zona_id ORDER BY año, mes) AS variacion_mensual,
+    CASE
+        WHEN temperatura_promedio > LAG(temperatura_promedio) OVER (PARTITION BY zona_id ORDER BY año, mes) THEN '↑'
+        WHEN temperatura_promedio < LAG(temperatura_promedio) OVER (PARTITION BY zona_id ORDER BY año, mes) THEN '↓'
+        ELSE '→'
+    END AS tendencia
+FROM temperatura_mensual_zona
+where upper(zona_nombre)= 'NECHÍ'
+ORDER BY zona_nombre, año, mes;
 
