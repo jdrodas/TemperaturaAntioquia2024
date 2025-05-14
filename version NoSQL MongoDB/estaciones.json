@@ -1,0 +1,254 @@
+[
+  {
+    "codigo": "1111500203",
+    "nombre": "CAMPO ALEGRE",
+    "municipio_codigo": 28,
+    "latitud": 7.026813889,
+    "longitud": -76.252825
+  },
+  {
+    "codigo": "0023085270",
+    "nombre": "AEROPUERTO J.M. CORDOVA",
+    "municipio_codigo": 2,
+    "latitud": 6.1686111,
+    "longitud": -75.426111111
+  },
+  {
+    "codigo": "2620500210",
+    "nombre": "UFRANÁ",
+    "municipio_codigo": 14,
+    "latitud": 6.085388889,
+    "longitud": -75.811972222
+  },
+  {
+    "codigo": "2620500209",
+    "nombre": "ACUEDUCTO ARMENIA",
+    "municipio_codigo": 8,
+    "latitud": 6.161666667,
+    "longitud": -75.775805556
+  },
+  {
+    "codigo": "0026200120",
+    "nombre": "OTRAMINA",
+    "municipio_codigo": 14,
+    "latitud": 6.07294444,
+    "longitud": -75.79458333
+  },
+  {
+    "codigo": "0011110110",
+    "nombre": "BOQUERON DE TOYO",
+    "municipio_codigo": 30,
+    "latitud": 6.699444444,
+    "longitud": -75.9775
+  },
+  {
+    "codigo": "0027011100",
+    "nombre": "LAS BRISAS",
+    "municipio_codigo": 26,
+    "latitud": 7.158805556,
+    "longitud": -74.82183333
+  },
+  {
+    "codigo": "1111500036",
+    "nombre": "ABRIAQUI",
+    "municipio_codigo": 27,
+    "latitud": 6.6363,
+    "longitud": -76.070733333
+  },
+  {
+    "codigo": "0026175040",
+    "nombre": "HACIENDA TUNEZ",
+    "municipio_codigo": 9,
+    "latitud": 5.80025,
+    "longitud": -75.65097222
+  },
+  {
+    "codigo": "0027010810",
+    "nombre": "SANTA ELENA",
+    "municipio_codigo": 22,
+    "latitud": 6.196888889,
+    "longitud": -75.51675
+  },
+  {
+    "codigo": "0023085260",
+    "nombre": "LA SELVA",
+    "municipio_codigo": 2,
+    "latitud": 6.131916667,
+    "longitud": -75.41455556
+  },
+  {
+    "codigo": "0023105030",
+    "nombre": "VEGACHI",
+    "municipio_codigo": 6,
+    "latitud": 6.774111111,
+    "longitud": -74.79652778
+  },
+  {
+    "codigo": "0027015190",
+    "nombre": "GUAYABITO",
+    "municipio_codigo": 25,
+    "latitud": 6.540388889,
+    "longitud": -75.14675
+  },
+  {
+    "codigo": "0026185050",
+    "nombre": "SANTA BARBARA",
+    "municipio_codigo": 11,
+    "latitud": 5.859583333,
+    "longitud": -75.55627778
+  },
+  {
+    "codigo": "0026225060",
+    "nombre": "HACIENDA COTOVE",
+    "municipio_codigo": 12,
+    "latitud": 6.533916667,
+    "longitud": -75.82733333
+  },
+  {
+    "codigo": "0027015320",
+    "nombre": "ARAGON",
+    "municipio_codigo": 24,
+    "latitud": 6.78,
+    "longitud": -75.56
+  },
+  {
+    "codigo": "0026180180",
+    "nombre": "SONSON",
+    "municipio_codigo": 13,
+    "latitud": 5.71525,
+    "longitud": -75.2945
+  },
+  {
+    "codigo": "0027010850",
+    "nombre": "AMALFI",
+    "municipio_codigo": 16,
+    "latitud": 6.905555556,
+    "longitud": -75.07722222
+  },
+  {
+    "codigo": "2620500211",
+    "nombre": "EL PLAN",
+    "municipio_codigo": 9,
+    "latitud": 5.924716667,
+    "longitud": -75.667316667
+  },
+  {
+    "codigo": "0023175020",
+    "nombre": "AEROPUERTO OTU",
+    "municipio_codigo": 1,
+    "latitud": 7.01175,
+    "longitud": -74.71630556
+  },
+  {
+    "codigo": "0026185020",
+    "nombre": "MESOPOTAMIA",
+    "municipio_codigo": 10,
+    "latitud": 5.88636111,
+    "longitud": -75.31863889
+  },
+  {
+    "codigo": "0025021480",
+    "nombre": "LA ESPERANZA RADIO",
+    "municipio_codigo": 23,
+    "latitud": 8.03,
+    "longitud": -74.79
+  },
+  {
+    "codigo": "0027035050",
+    "nombre": "SENA - EL BAGRE",
+    "municipio_codigo": 21,
+    "latitud": 7.584666667,
+    "longitud": -74.800694444
+  },
+  {
+    "codigo": "0023085160",
+    "nombre": "CORRIENTES",
+    "municipio_codigo": 5,
+    "latitud": 6.311944444,
+    "longitud": -75.25355556
+  },
+  {
+    "codigo": "0011115040",
+    "nombre": "MUSINGA",
+    "municipio_codigo": 29,
+    "latitud": 6.777972222,
+    "longitud": -76.20333333
+  },
+  {
+    "codigo": "0027030140",
+    "nombre": "LA PALMA DE COCO",
+    "municipio_codigo": 26,
+    "latitud": 7.236111111,
+    "longitud": -74.80794444
+  },
+  {
+    "codigo": "0026255030",
+    "nombre": "SANTA ISABEL VALDIVIA",
+    "municipio_codigo": 15,
+    "latitud": 7.157222222,
+    "longitud": -75.442275
+  },
+  {
+    "codigo": "0023105070",
+    "nombre": "MACEO",
+    "municipio_codigo": 7,
+    "latitud": 6.571638889,
+    "longitud": -74.79472222
+  },
+  {
+    "codigo": "0027015330",
+    "nombre": "AEROPUERTO OLAYA HERRERA",
+    "municipio_codigo": 22,
+    "latitud": 6.2246389,
+    "longitud": -75.588225
+  },
+  {
+    "codigo": "0023085220",
+    "nombre": "SAN CARLOS",
+    "municipio_codigo": 3,
+    "latitud": 6.157666667,
+    "longitud": -75.03891667
+  },
+  {
+    "codigo": "0011110010",
+    "nombre": "NORMAL SANTA TERESA",
+    "municipio_codigo": 29,
+    "latitud": 6.763333333,
+    "longitud": -76.13361111
+  },
+  {
+    "codigo": "0023085080",
+    "nombre": "GRANJA EXPERIMENTAL EL NUS",
+    "municipio_codigo": 4,
+    "latitud": 6.483583333,
+    "longitud": -74.83669444
+  },
+  {
+    "codigo": "0027015310",
+    "nombre": "METROMEDELLIN",
+    "municipio_codigo": 19,
+    "latitud": 6.32975,
+    "longitud": -75.55211111
+  },
+  {
+    "codigo": "2702500107",
+    "nombre": "ANGOSTURA",
+    "municipio_codigo": 17,
+    "latitud": 6.900555556,
+    "longitud": -75.326019444
+  },
+  {
+    "codigo": "0027025030",
+    "nombre": "ANORI",
+    "municipio_codigo": 18,
+    "latitud": 7.0719,
+    "longitud": -75.1505
+  },
+  {
+    "codigo": "0027015260",
+    "nombre": "LA SALADA",
+    "municipio_codigo": 20,
+    "latitud": 6.048361111,
+    "longitud": -75.62466667
+  }
+]

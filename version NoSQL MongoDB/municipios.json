@@ -1,0 +1,182 @@
+[
+  {
+    "codigo": 2,
+    "nombre": "RIONEGRO",
+    "departamento_codigo": 1,
+    "zona_codigo": 1
+  },
+  {
+    "codigo": 15,
+    "nombre": "VALDIVIA",
+    "departamento_codigo": 1,
+    "zona_codigo": 2
+  },
+  {
+    "codigo": 27,
+    "nombre": "ABRIAQUÍ",
+    "departamento_codigo": 1,
+    "zona_codigo": 4
+  },
+  {
+    "codigo": 17,
+    "nombre": "ANGOSTURA",
+    "departamento_codigo": 1,
+    "zona_codigo": 3
+  },
+  {
+    "codigo": 4,
+    "nombre": "SAN ROQUE",
+    "departamento_codigo": 1,
+    "zona_codigo": 1
+  },
+  {
+    "codigo": 6,
+    "nombre": "VEGACHÍ",
+    "departamento_codigo": 1,
+    "zona_codigo": 1
+  },
+  {
+    "codigo": 12,
+    "nombre": "SANTA FE DE ANTIOQUIA",
+    "departamento_codigo": 1,
+    "zona_codigo": 2
+  },
+  {
+    "codigo": 7,
+    "nombre": "YOLOMBÓ",
+    "departamento_codigo": 1,
+    "zona_codigo": 1
+  },
+  {
+    "codigo": 24,
+    "nombre": "SANTA ROSA DE OSOS",
+    "departamento_codigo": 1,
+    "zona_codigo": 3
+  },
+  {
+    "codigo": 23,
+    "nombre": "NECHÍ",
+    "departamento_codigo": 1,
+    "zona_codigo": 3
+  },
+  {
+    "codigo": 3,
+    "nombre": "SAN CARLOS",
+    "departamento_codigo": 1,
+    "zona_codigo": 1
+  },
+  {
+    "codigo": 26,
+    "nombre": "SEGOVIA",
+    "departamento_codigo": 1,
+    "zona_codigo": 3
+  },
+  {
+    "codigo": 30,
+    "nombre": "GIRALDO",
+    "departamento_codigo": 1,
+    "zona_codigo": 4
+  },
+  {
+    "codigo": 21,
+    "nombre": "EL BAGRE",
+    "departamento_codigo": 1,
+    "zona_codigo": 3
+  },
+  {
+    "codigo": 11,
+    "nombre": "SANTA BÁRBARA",
+    "departamento_codigo": 1,
+    "zona_codigo": 2
+  },
+  {
+    "codigo": 22,
+    "nombre": "MEDELLÍN",
+    "departamento_codigo": 1,
+    "zona_codigo": 3
+  },
+  {
+    "codigo": 10,
+    "nombre": "LA UNIÓN",
+    "departamento_codigo": 1,
+    "zona_codigo": 2
+  },
+  {
+    "codigo": 16,
+    "nombre": "AMALFI",
+    "departamento_codigo": 1,
+    "zona_codigo": 3
+  },
+  {
+    "codigo": 5,
+    "nombre": "SAN VICENTE",
+    "departamento_codigo": 1,
+    "zona_codigo": 1
+  },
+  {
+    "codigo": 8,
+    "nombre": "ARMENIA",
+    "departamento_codigo": 1,
+    "zona_codigo": 2
+  },
+  {
+    "codigo": 20,
+    "nombre": "CALDAS",
+    "departamento_codigo": 1,
+    "zona_codigo": 3
+  },
+  {
+    "codigo": 14,
+    "nombre": "TITIRIBÍ",
+    "departamento_codigo": 1,
+    "zona_codigo": 2
+  },
+  {
+    "codigo": 25,
+    "nombre": "SANTO DOMINGO",
+    "departamento_codigo": 1,
+    "zona_codigo": 3
+  },
+  {
+    "codigo": 18,
+    "nombre": "ANORÍ",
+    "departamento_codigo": 1,
+    "zona_codigo": 3
+  },
+  {
+    "codigo": 19,
+    "nombre": "BELLO",
+    "departamento_codigo": 1,
+    "zona_codigo": 3
+  },
+  {
+    "codigo": 29,
+    "nombre": "FRONTINO",
+    "departamento_codigo": 1,
+    "zona_codigo": 4
+  },
+  {
+    "codigo": 1,
+    "nombre": "REMEDIOS",
+    "departamento_codigo": 1,
+    "zona_codigo": 1
+  },
+  {
+    "codigo": 9,
+    "nombre": "FREDONIA",
+    "departamento_codigo": 1,
+    "zona_codigo": 2
+  },
+  {
+    "codigo": 13,
+    "nombre": "SONSÓN",
+    "departamento_codigo": 1,
+    "zona_codigo": 2
+  },
+  {
+    "codigo": 28,
+    "nombre": "DABEIBA",
+    "departamento_codigo": 1,
+    "zona_codigo": 4
+  }
+]
